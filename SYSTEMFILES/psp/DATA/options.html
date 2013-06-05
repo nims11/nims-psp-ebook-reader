@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+function optimizetoggle()
+{
+	if(parent.frames[1].imgLoad=='no')
+	parent.frames[1].imgLoad='yes';
+	else
+	parent.frames[1].imgLoad='no';
+	
+	parent.frames[1].bg2='default';
+	parent.frames[1].fg='default';
+	parent.frames[1].bg='default';
+	parent.frames[1].fsize='default';
+	parent.frames[1].restore();
+}
+</script>
+</head>
+
+<body background="images/opt_bg.jpg">
+<center><h1>Options and Preferences</h1></center>
+<div style="font-size:75%">
+<table width="100%" border="0">
+  <tr>
+    <th scope="col"><b><i>OPTIONS</i></b></th>
+    <th scope="col"><b><i>CURRENT STATUS</i></b></th>
+  </tr>
+  <tr>
+    <td><b><a href="fgchooser.html">Text color<br /></a></b></td>
+    <td><input type=text" id="fgst" value="" disabled=true /></td>
+  </tr>
+  <tr>
+    <td><b><a href="bgchooser.html">Page background color (WARNING: WILL REMOVE IMAGES)</a><br /></b></td>
+    <td><input type=text" id="bgst" value="" disabled=true /></td>
+  </tr>
+  <tr>
+    <td><b><a href="bgchooser2.html">Text background color (WARNING: SLOW BUT WILL RETAIN IMAGES)</a><br /></b></td>
+    <td><input type=text" id="bg2st" value="" disabled=true /></td>
+  </tr>
+  <tr>
+    <td><b><a href="fontsize.html">Font Size<br /></a></b></td>
+    <td><input type=text" id="fntsizst" value="" disabled=true /></td>
+  </tr>
+  <tr>
+      <td><b><a href="javascript:if(parent.frames[1].imgLoad=='no'){parent.frames[1].imgLoad='yes';}else parent.frames[1].imgLoad='no';parent.frames[1].restore();">Disable/Enable Images</a></b></td>
+	  <td><input type=text" id="loadimgst" value="" disabled=true /></td>
+  </tr>
+  <tr>
+    <td><b><a href="javascript:optimizetoggle()">Toggle Optimize(enabling will disable images and extra formatting to boost speed)</a></b></td>
+  </tr>
+</table>
+</div>
+<script type="text/javascript">
+document.getElementById("fgst").value=parent.frames[1].fg;
+document.getElementById("bgst").value=parent.frames[1].bg;
+document.getElementById("bg2st").value=parent.frames[1].bg2;
+document.getElementById("fntsizst").value=parent.frames[1].fsize;
+document.getElementById("loadimgst").value=parent.frames[1].imgLoad;
+</script>
+
+<div style="font:'Comic Sans MS', cursive; font-size:14px;">
+<B>
+
+
+<a href="font.html">Fonts<br /></a>
+<a href="javascript:parent.frames[1].imgLoad='yes';parent.frames[1].bg2='default';parent.frames[1].fg='default';parent.frames[1].bg='default';parent.frames[1].fsize='default';parent.frames[1].restore();">reset to Default<br /></a>
+
+</B>
+</div>
+
+</div>
+</body>
+</html>

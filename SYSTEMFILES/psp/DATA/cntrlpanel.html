@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="books.js"></script>
+
+<script type="text/javascript">
+var choice;
+var currentPage=1;
+
+function preprocess()
+{
+	parent.frames[0].location='book/book-1.html';
+parent.frames[1].setBook(0);
+parent.frames[1].document.controlUnit.first_page.disabled=false;
+parent.frames[1].document.controlUnit.prev_page.disabled=false;
+parent.frames[1].document.controlUnit.next_page.disabled=false;
+parent.frames[1].document.controlUnit.last_page.disabled=false;
+parent.frames[1].document.controlUnit.currentPage.disabled=false;
+document.controlUnit.options.disabled=false;
+window.imgLoad="yes";
+window.fsize="default";
+window.fg="default";
+window.bg="default";
+window.bg2="default";
+}
+
+function resetAll()
+{
+	parent.frames[0].location='loader.html';
+window.location='cntrlpanel.html';
+
+}
+
+
+function setBook(optionValue)
+{
+	var pageName,pages;
+if(book[optionValue].type==".html"){
+pageName=book[optionValue].lastPage.slice(0,-5);
+pages=pageName.lastIndexOf("-");
+pages=pageName.slice(pages+1);
+document.controlUnit.totalPages.value=parseInt(pages);
+window.defbg=book[optionValue].bg;
+window.defbg2=book[optionValue].bg2;
+window.deffg=book[optionValue].fg;
+window.images=book[optionValue].images;
+}
+
+window.pages=pages;
+window.pageName=pageName;
+document.controlUnit.currentPage.value=1;
+}
+
+
+
+var currentPage=1;
+function restore()
+{
+  change(100);	
+}
+
+
+function change(option)
+{
+	currentPage=parseInt(document.controlUnit.currentPage.value);
+ switch(option)
+ { 
+   case 1:if(currentPage==1)
+          {
+		    currentPage=parseInt(window.pages);
+		  }else
+		  currentPage--;
+		  break;
+   case 2:if(currentPage==parseInt(window.pages))
+          {
+		    currentPage=1;
+	      }else
+          currentPage++;
+          break;
+   case 3:var manualPage=parseInt(document.controlUnit.currentPage.value);
+          if((!manualPage)||(manualPage<1 || manualPage>parseInt(window.pages)))
+		  {
+		  alert("invalid page no");
+		  }else
+		  currentPage=manualPage;
+		  break;
+   case 4:currentPage=1;
+   break;
+   case 5:currentPage=parseInt(window.pages);
+   break;
+ }
+ currentPage=String(currentPage);
+ var paaa=new String(window.pageName);
+ var finalPage;
+ finalPage=paaa.slice(0,paaa.lastIndexOf("-")+1)+currentPage+".html";
+ parent.frames[0].location=finalPage;
+ window.setTimeout("initial()",50);
+ document.controlUnit.currentPage.value=currentPage;
+}
+</script>
+
+
+<script type="text/javascript">
+function initial()
+{
+document.body.style.maxWidth=480;
+	var spans=parent.frames[0].document.getElementsByTagName("span");
+	var divs=parent.frames[0].document.getElementsByTagName("div");
+	if(window.imgLoad=="no" || window.images=="no")
+	{
+	if(window.images=="yes")
+	parent.frames[0].document.getElementsByTagName("IMG")[0].src="";
+	if(window.bg!="default")
+ {
+
+color=window.bg;
+divs[0].style.backgroundColor=color;
+}else if(window.defbg!="default")
+{color=window.defbg;
+divs[0].style.backgroundColor=color;
+}}else
+if(window.bg=="default" && window.imgLoad=="yes")
+ {
+ if(window.bg2!="default")
+ {
+color=window.bg2;
+for(i=0;i<divs.length;i++)
+divs[i].style.backgroundColor=color;
+}else if(window.defbg2!="default")
+{
+ color=window.defbg2;
+for(i=0;i<divs.length;i++)
+divs[i].style.backgroundColor=color;
+}
+}
+
+ if(window.fg!="default")
+ {
+	color=window.fg;
+	for(i=0;i<spans.length;i++)
+	{
+
+		spans[i].style.color=color;
+	}
+}else if(window.deffg!="default")
+{
+ color=window.deffg;
+	for(i=0;i<spans.length;i++)
+		spans[i].style.color=color;
+}
+
+ if(window.fsize!="default")
+ {
+  for(i=0;i<spans.length;i++)
+	{
+
+		spans[i].style.fontSize=window.fsize;
+	}
+}
+}
+
+function disableButtons()
+{
+	document.controlUnit.first_page.disabled=true;
+	document.controlUnit.options.disabled=true;
+	document.controlUnit.prev_page.disabled=true;
+	document.controlUnit.next_page.disabled=true;
+	document.controlUnit.last_page.disabled=true;
+	document.controlUnit.currentPage.disabled=true;
+}
+</script>
+
+</head>
+
+<body bgcolor="#000000" onload="disableButtons()" background="images/ctrlbg.jpg">
+<div style="position:absolute; top:0; left:0; width:100%;">
+
+<form name="controlUnit">
+<center>
+<input type="button" value="Options" id="options" onclick="javascript:parent.frames[0].location='options.html'" />
+<input type="button" value="&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;&nbsp;" onclick="change(4)" name="first_page" />
+<input type="button" value="&nbsp;&nbsp;&nbsp;&lt;&nbsp;&nbsp;&nbsp;" onclick="change(1)" name="prev_page" />
+<input type="text" maxlength="6" size="6" onChange="change(3);" name="currentPage"/>
+/<input type="text" maxlength="6" size="6" name="totalPages" disabled="true"/>
+<input type="button" value="&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;" onclick="change(2)" name="next_page" />
+<input type="button" value="&nbsp;&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;&nbsp;" onclick="change(5)" name="last_page" />
+<input type="button" value="Refresh" onclick="resetAll();" id="refresh" />
+<br />
+</center>
+
+</form>
+
+</div>
+
+</body>
+</html>

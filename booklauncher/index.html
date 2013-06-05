@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BOOKLAUNCHER</title>
+
+</head>
+
+<body bgcolor="BLUE">
+<center>
+<form action="" name="bookselect" id="bookselect">
+<H1>BOOK LAUNCHER FOR NIMS PSP EBOOK READER<H1>
+<BR>
+<h3>BROWSE TO THE LOCATION OF THE BOOK FOLDER THAT YOU COPIED FROM THE "OUTPUT" FOLDER TO THE PSP.
+OPEN THAT FOLDER AND SELECT THE "index.html" FILE</h3>
+<input type="file" name="selection" id="selection" /><br>
+<INPUT TYPE=BUTTON VALUE="LAUNCH!!!" ONCLICK="javascript:window.location= 'file://ms0:' + document.bookselect.selection.value,'_self';" />
+</form>
+</center>
+</body>
+</html>

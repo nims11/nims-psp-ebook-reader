@@ -1,0 +1,7 @@
+-easy turning pages through click on the main page.
+
+-links in the book to be compatible with the control panel
+
+-find some other way to call initial()
+
+-clean the clutter in the code and comment
